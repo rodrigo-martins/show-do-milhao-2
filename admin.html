@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hall da Fama</title>
+    <link rel="shortcut icon" href=""/>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+<body ng-app="myApp" ng-controller="adminCtrl" ng-cloak>
+
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools">
+        <md-menu>
+            <md-button aria-label="" class="md-icon-button" ng-click="$mdMenu.open($event)">
+                <md-icon>
+                    <i class="material-icons">menu</i>
+                </md-icon>
+            </md-button>
+            <md-menu-content width="4">
+                <md-menu-item>
+                    <md-button ng-click="$parent.menu = true">
+                        Usuários
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="$parent.menu = false">
+                        Perguntas
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+        <h2 flex md-truncate>Administração de {{(menu)?'Usuarios':'Perguntas'}}</h2>
+    </div>
+</md-toolbar>
+<md-content layout-margin ng-show="menu">
+    <md-tabs md-border-bottom>
+        <md-tab label="Novo">
+            <form name="projectFormUserNew">
+                <md-content layout="row">
+                    <div flex>
+                        <md-card layout-margin>
+                            <div layout="row">
+                                <div flex>
+                                    <div layout="row">
+                                        <div flex="50">
+                                            <md-input-container class="md-block">
+                                                <label>Nome</label>
+                                                <input type="text"
+                                                       id="dn_nome"
+                                                       name="nome"
+                                                       ng-model="userNew.nome"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="50">
+                                            <md-input-container class="md-block">
+                                                <label>Sobrenome</label>
+                                                <input type="text"
+                                                       id="dn_sobrenome"
+                                                       name="sobrenome"
+                                                       ng-model="userNew.sobrenome"/>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <div layout="row">
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>Login</label>
+                                                <input type="text"
+                                                       required
+                                                       id="dn_login"
+                                                       name="login"
+                                                       ng-model="userNew.login"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>E-mail</label>
+                                                <input type="email"
+                                                       id="dn_email"
+                                                       name="email"
+                                                       ng-model="userNew.email"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>Senha</label>
+                                                <input type="password"
+                                                       required
+                                                       id="dn_senha"
+                                                       name="senha"
+                                                       ng-model="userNew.senha"/>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <div class="headline">Pontos</div>
+                                    <div layout="row">
+                                        <div flex="25">
+                                            <md-input-container class="md-block">
+                                                <label>Pontos</label>
+                                                <input type="number"
+                                                       id="dn_pontos"
+                                                       name="pontos"
+                                                       ng-model="userNew.pontos"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="25">
+                                            <md-input-container class="md-block">
+                                                <label>Cartas</label>
+                                                <input type="number"
+                                                       id="dn_cartas"
+                                                       name="cartas"
+                                                       ng-model="userNew.cartas"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="25">
+                                            <md-input-container class="md-block">
+                                                <label>Pulos</label>
+                                                <input type="number"
+                                                       id="dn_pulos"
+                                                       name="pulos"
+                                                       ng-model="userNew.pulos"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="25">
+                                            <md-input-container class="md-block">
+                                                <label>Opiniao</label>
+                                                <input type="number"
+                                                       id="dn_opiniao"
+                                                       name="opiniao"
+                                                       ng-model="userNew.opiniao"/>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <div class="headline">Continentes</div>
+                                    <div layout="row">
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>America Norte</label>
+                                                <input type="number"
+                                                       id="dn_america_norte"
+                                                       name="america_norte"
+                                                       ng-model="userNew.america_norte"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>America Sul</label>
+                                                <input type="number"
+                                                       id="dn_america_sul"
+                                                       name="america_sul"
+                                                       ng-model="userNew.america_sul"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>Oceania</label>
+                                                <input type="number"
+                                                       id="dn_oceania"
+                                                       name="oceania"
+                                                       ng-model="userNew.oceania"/>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <div layout="row">
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>Africa</label>
+                                                <input type="number"
+                                                       id="dn_africa"
+                                                       name="africa"
+                                                       ng-model="userNew.africa"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>Asia</label>
+                                                <input type="number"
+                                                       id="dn_asia"
+                                                       name="asia"
+                                                       ng-model="userNew.asia"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>Europa</label>
+                                                <input type="number"
+                                                       id="dn_europa"
+                                                       name="europa"
+                                                       ng-model="userNew.europa"/>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <input type="checkbox"  id="dn_adm" aria-label="">
+                                    <label for="dn_adm">Administrador</label>
+                                </div>
+                                <div flex="35" layout-margin>
+                                    <p>Escolha seu avatar</p>
+                                    <div layout="row">
+                                        <div>
+                                            <label for="avatar_0">
+                                                <input type="radio"
+                                                       value="0"
+                                                       required
+                                                       id="avatar_0"
+                                                       name="avatar">
+                                                <img   layout-padding
+                                                       src="img/avatar/download.png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="avatar_1">
+                                                <input type="radio"
+                                                       value="1"
+                                                       id="avatar_1"
+                                                       name="avatar">
+                                                <img   layout-padding
+                                                       src="img/avatar/download(1).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="avatar_2">
+                                                <input type="radio"
+                                                       value="2"
+                                                       id="avatar_2"
+                                                       name="avatar">
+                                                <img   layout-padding
+                                                       src="img/avatar/download(2).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div layout="row">
+                                        <div>
+                                            <label for="avatar_3">
+                                                <input type="radio"
+                                                       value="3"
+                                                       id="avatar_3"
+                                                       name="avatar">
+                                                <img   layout-padding
+                                                       src="img/avatar/download(3).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="avatar_4">
+                                                <input type="radio"
+                                                       value="4"
+                                                       id="avatar_4"
+                                                       name="avatar">
+                                                <img   layout-padding
+                                                       src="img/avatar/download(4).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="avatar_5">
+                                                <input type="radio"
+                                                       value="5"
+                                                       id="avatar_5"
+                                                       name="avatar">
+                                                <img   layout-padding
+                                                       src="img/avatar/download(5).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <p>Escolha seu balão</p>
+                                    <div layout="row">
+                                        <div>
+                                            <label for="balao_0">
+                                                <input type="radio"
+                                                       value="0"
+                                                       required
+                                                       id="balao_0"
+                                                       name="balao">
+                                                <img   layout-padding
+                                                       src="img/balao/balloon.png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="balao_1">
+                                                <input type="radio"
+                                                       value="0"
+                                                       id="balao_1"
+                                                       name="balao">
+                                                <img   layout-padding
+                                                       src="img/balao/balloon(1).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="balao_2">
+                                                <input type="radio"
+                                                       value="2"
+                                                       id="balao_2"
+                                                       name="balao">
+                                                <img   layout-padding
+                                                       src="img/balao/balloon(2).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div layout="row">
+                                        <div>
+                                            <label for="balao_3">
+                                                <input type="radio"
+                                                       value="3"
+                                                       id="balao_3"
+                                                       name="balao">
+                                                <img   layout-padding
+                                                       src="img/balao/balloon(3).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="balao_4">
+                                                <input type="radio"
+                                                       value="4"
+                                                       id="balao_4"
+                                                       name="balao">
+                                                <img   layout-padding
+                                                       src="img/balao/balloon(4).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="balao_5">
+                                                <input type="radio"
+                                                       value="5"
+                                                       id="balao_5"
+                                                       name="balao">
+                                                <img   layout-padding
+                                                       src="img/balao/balloon(5).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <md-card-actions layout="row" layout-align="end center">
+                                <md-button
+                                        ng-disabled="!projectFormUserNew.$valid"
+                                        class="md-raised md-primary"
+                                        type="submit">
+                                    Criar
+                                </md-button>
+                            </md-card-actions>
+                        </md-card>
+                    </div>
+                </md-content>
+            </form>
+        </md-tab>
+        <md-tab label="Alterar">
+            <form name="projectFormUser">
+                <md-content layout="row">
+                    <div flex="25">
+                        <md-card layout-margin>
+                            <div>
+                                <md-input-container class="md-icon-float md-block">
+                                    <!-- Use floating label instead of placeholder -->
+                                    <label>Pesquisar usuario</label>
+                                    <md-icon>
+                                        <i class="material-icons">search</i>
+                                    </md-icon>
+                                    <input ng-model="search" type="text">
+                                </md-input-container>
+                            </div>
+                            <div layout="row" layout-align="center center">
+                                <div>
+                                    <md-progress-circular ng-if="!(usuarios && usuarios.length)" md-mode="indeterminate"
+                                                          layout-align="center center"></md-progress-circular>
+                                </div>
+                            </div>
+                            <md-list flex ng-if="usuarios && usuarios.length">
+                                <md-list-item class="md-3-line" ng-click="selectUser(usuario)"
+                                              ng-repeat="usuario in usuarios | filter:search">
+                                    <div class="md-list-item-text" layout="column">
+                                        <h3> Usuário #{{ usuario.id_usuario }}</h3>
+                                        <h4>{{ usuario.nome }}</h4>
+                                        <p>{{ usuario.email }}</p>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-card>
+                    </div>
+                    <div flex>
+                        <md-card layout-margin>
+                            <div layout="row">
+                                <div flex>
+                                    <div layout="row">
+                                        <div flex="10">
+                                            <md-input-container class="md-block">
+                                                <label>ID</label>
+                                                <input type="number"
+                                                       readonly
+                                                       id="dx_id_usuario"
+                                                       name="id_usuario"
+                                                       ng-model="user.id_usuario"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="40">
+                                            <md-input-container class="md-block">
+                                                <label>Nome</label>
+                                                <input type="text"
+                                                       id="dx_nome"
+                                                       name="nome"
+                                                       ng-model="user.nome"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="50">
+                                            <md-input-container class="md-block">
+                                                <label>Sobrenome</label>
+                                                <input type="text"
+                                                       id="dx_sobrenome"
+                                                       name="sobrenome"
+                                                       ng-model="user.sobrenome"/>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <div layout="row">
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>Login</label>
+                                                <input type="text"
+                                                       required
+                                                       id="dx_login"
+                                                       name="login"
+                                                       ng-model="user.login"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>E-mail</label>
+                                                <input type="email"
+                                                       id="dx_email"
+                                                       name="email"
+                                                       ng-model="user.email"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>Senha</label>
+                                                <input type="password"
+                                                       required
+                                                       id="dx_senha"
+                                                       name="senha"
+                                                       ng-model="user.senha"/>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <div class="headline md-primary">Pontos</div>
+                                    <div layout="row">
+                                        <div flex="25">
+                                            <md-input-container class="md-block">
+                                                <label>Pontos</label>
+                                                <input type="number"
+                                                       id="dx_pontos"
+                                                       name="pontos"
+                                                       ng-model="user.pontos"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="25">
+                                            <md-input-container class="md-block">
+                                                <label>Cartas</label>
+                                                <input type="number"
+                                                       id="dx_cartas"
+                                                       name="cartas"
+                                                       ng-model="user.cartas"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="25">
+                                            <md-input-container class="md-block">
+                                                <label>Pulos</label>
+                                                <input type="number"
+                                                       id="dx_pulos"
+                                                       name="pulos"
+                                                       ng-model="user.pulos"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="25">
+                                            <md-input-container class="md-block">
+                                                <label>Opiniao</label>
+                                                <input type="number"
+                                                       id="dx_opiniao"
+                                                       name="opiniao"
+                                                       ng-model="user.opiniao"/>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <div class="headline">Continentes</div>
+                                    <div layout="row">
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>America Norte</label>
+                                                <input type="number"
+                                                       id="dx_america_norte"
+                                                       name="america_norte"
+                                                       ng-model="user.america_norte"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>America Sul</label>
+                                                <input type="number"
+                                                       id="dx_america_sul"
+                                                       name="america_sul"
+                                                       ng-model="user.america_sul"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>Oceania</label>
+                                                <input type="number"
+                                                       id="dx_oceania"
+                                                       name="oceania"
+                                                       ng-model="user.oceania"/>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <div layout="row">
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>Africa</label>
+                                                <input type="number"
+                                                       id="dx_africa"
+                                                       name="africa"
+                                                       ng-model="userNew.africa"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>Asia</label>
+                                                <input type="number"
+                                                       id="dx_asia"
+                                                       name="asia"
+                                                       ng-model="userNew.asia"/>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="33">
+                                            <md-input-container class="md-block">
+                                                <label>Europa</label>
+                                                <input type="number"
+                                                       id="dx_europa"
+                                                       name="europa"
+                                                       ng-model="userNew.europa"/>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <input type="checkbox"  id="dx_adm" aria-label="">
+                                    <label for="dx_adm">Administrador</label>
+                                </div>
+                                <div flex="35" layout-margin>
+                                    <p>Escolha seu avatar</p>
+                                    <div layout="row">
+                                        <div>
+                                            <label for="dx_avatar_0">
+                                                <input type="radio"
+                                                       value="0"
+                                                       required
+                                                       id="dx_avatar_0"
+                                                       name="dx_avatar">
+                                                <img   layout-padding
+                                                       src="img/avatar/download.png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="dx_avatar_1">
+                                                <input type="radio"
+                                                       value="0"
+                                                       id="dx_avatar_1"
+                                                       name="dx_avatar">
+                                                <img   layout-padding
+                                                       src="img/avatar/download(1).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="dx_avatar_2">
+                                                <input type="radio"
+                                                       value="2"
+                                                       id="dx_avatar_2"
+                                                       name="dx_avatar">
+                                                <img   layout-padding
+                                                       src="img/avatar/download(2).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div layout="row">
+                                        <div>
+                                            <label for="dx_avatar_3">
+                                                <input type="radio"
+                                                       value="3"
+                                                       id="dx_avatar_3"
+                                                       name="dx_avatar">
+                                                <img   layout-padding
+                                                       src="img/avatar/download(3).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="dx_avatar_4">
+                                                <input type="radio"
+                                                       value="4"
+                                                       id="dx_avatar_4"
+                                                       name="dx_avatar">
+                                                <img   layout-padding
+                                                       src="img/avatar/download(4).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="dx_avatar_5">
+                                                <input type="radio"
+                                                       value="5"
+                                                       id="dx_avatar_5"
+                                                       name="dx_avatar">
+                                                <img   layout-padding
+                                                       src="img/avatar/download(5).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <p>Escolha seu balão</p>
+                                    <div layout="row">
+                                        <div>
+                                            <label for="dx_balao_0">
+                                                <input type="radio"
+                                                       value="0"
+                                                       required
+                                                       id="dx_balao_0"
+                                                       name="dx_balao">
+                                                <img   layout-padding
+                                                       src="img/balao/balloon.png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="dx_balao_1">
+                                                <input type="radio"
+                                                       value="0"
+                                                       id="dx_balao_1"
+                                                       name="dx_balao">
+                                                <img   layout-padding
+                                                       src="img/balao/balloon(1).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="dx_balao_2">
+                                                <input type="radio"
+                                                       value="2"
+                                                       id="dx_balao_2"
+                                                       name="dx_balao">
+                                                <img   layout-padding
+                                                       src="img/balao/balloon(2).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div layout="row">
+                                        <div>
+                                            <label for="dx_balao_3">
+                                                <input type="radio"
+                                                       value="3"
+                                                       id="dx_balao_3"
+                                                       name="dx_balao">
+                                                <img   layout-padding
+                                                       src="img/balao/balloon(3).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="dx_balao_4">
+                                                <input type="radio"
+                                                       value="4"
+                                                       id="dx_balao_4"
+                                                       name="dx_balao">
+                                                <img   layout-padding
+                                                       src="img/balao/balloon(4).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="dx_balao_5">
+                                                <input type="radio"
+                                                       value="5"
+                                                       id="dx_balao_5"
+                                                       name="dx_balao">
+                                                <img   layout-padding
+                                                       src="img/balao/balloon(5).png"
+                                                       width="70" class="md-avatar">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <md-card-actions layout="row" layout-align="end center">
+                                <md-button
+                                        ng-disabled="!projectFormUser.$valid"
+                                        class="md-warn"
+                                        type="submit">
+                                    Excluir
+                                </md-button>
+                                <md-button
+                                        ng-disabled="!projectFormUser.$valid"
+                                        class="md-raised md-primary"
+                                        type="submit">
+                                    Salvar
+                                </md-button>
+                            </md-card-actions>
+                        </md-card>
+                    </div>
+                </md-content>
+            </form>
+        </md-tab>
+    </md-tabs>
+</md-content>
+<md-content layout-margin ng-show="!menu">
+    <md-tabs md-border-bottom>
+        <md-tab label="Nova">
+            <form name="projectFormNew">
+                <md-content layout="row">
+                    <div flex>
+                        <md-card layout-margin>
+                            <div>
+                                <md-input-container class="md-block">
+                                    <label>Pergunta</label>
+                                    <input type="text"
+                                           id="dp_pergunta"
+                                           required
+                                           name="pergunta"
+                                           ng-model="new.pergunta"/>
+                                </md-input-container>
+                                <div layout="row">
+                                    <div flex="5">
+                                        <input type="checkbox" id="dp_resposta_0">
+                                    </div>
+                                    <div flex>
+                                        <md-input-container class="md-block">
+                                            <label>Alternativa A</label>
+                                            <input type="text"
+                                                   id="dp_alternativa_0"
+                                                   required
+                                                   name="alt_a"
+                                                   ng-model="new.alternativas[0].alternativa"/>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div layout="row">
+                                    <div flex="5">
+                                        <input type="checkbox" id="dp_resposta_1">
+                                    </div>
+                                    <div flex>
+                                        <md-input-container class="md-block">
+                                            <label>Alternativa B</label>
+                                            <input type="text"
+                                                   required
+                                                   id="dp_alternativa_1"
+                                                   name="alt_b"
+                                                   ng-model="new.alternativas[1].alternativa"/>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div layout="row">
+                                    <div flex="5">
+                                        <input type="checkbox" id="dp_resposta_2">
+                                    </div>
+                                    <div flex>
+                                        <md-input-container class="md-block">
+                                            <label>Alternativa C</label>
+                                            <input type="text"
+                                                   id="dp_alternativa_2"
+                                                   required
+                                                   name="alt_c"
+                                                   ng-model="new.alternativas[2].alternativa"/>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div layout="row">
+                                    <div flex="5">
+                                        <input type="checkbox" id="dp_resposta_3">
+                                    </div>
+                                    <div flex>
+                                        <md-input-container class="md-block">
+                                            <label>Alternativa D</label>
+                                            <input type="text"
+                                                   required
+                                                   id="dp_alternativa_3"
+                                                   name="alt_d"
+                                                   ng-model="new.alternativas[3].alternativa"/>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <md-card-actions layout="row" layout-align="end center">
+                                    <md-button
+                                            ng-disabled="!projectFormNew.$valid"
+                                            class="md-raised md-primary"
+                                            type="submit">
+                                        Criar
+                                    </md-button>
+                                </md-card-actions>
+                            </div>
+                        </md-card>
+                    </div>
+                </md-content>
+            </form>
+        </md-tab>
+        <md-tab label="Alterar">
+            <form name="projectForm">
+                <md-content layout="row">
+                    <div flex="30">
+                        <md-card layout-margin>
+                            <div>
+                                <md-input-container class="md-icon-float md-block">
+                                    <!-- Use floating label instead of placeholder -->
+                                    <label>Pesquisar pergunta</label>
+                                    <md-icon>
+                                        <i class="material-icons">search</i>
+                                    </md-icon>
+                                    <input ng-model="search" type="text">
+                                </md-input-container>
+                            </div>
+                            <md-list flex ng-if="perguntas && perguntas.length">
+                                <md-list-item class="md-3-line" ng-click="selectQuestion(pergunta)"
+                                              ng-repeat="pergunta in perguntas | filter:search">
+                                    <div class="md-list-item-text" layout="column">
+                                        <h3> Pergunta #{{ pergunta.id_pergunta }}</h3>
+                                        <h4>{{ pergunta.pergunta }}</h4>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-card>
+                    </div>
+                    <div flex>
+                        <md-card layout-margin>
+                            <div>
+                                <md-input-container class="md-block">
+                                    <label>ID</label>
+                                    <input type="number"
+                                           id="dpn_id_pergunta"
+                                           required
+                                           name="id_pergunta"
+                                           ng-model="old.id_pergunta"/>
+                                </md-input-container>
+                                <md-input-container class="md-block">
+                                    <label>Pergunta</label>
+                                    <input type="text"
+                                           id="dpn_pergunta"
+                                           required
+                                           name="pergunta"
+                                           ng-model="old.pergunta"/>
+                                </md-input-container>
+                                <div layout="row">
+                                    <div flex="5">
+                                        <input type="checkbox" id="dpn_resposta_0">
+                                    </div>
+                                    <div flex>
+                                        <md-input-container class="md-block">
+                                            <label>Alternativa A</label>
+                                            <input type="text"
+                                                   id="dpn_alternativa_0"
+                                                   required
+                                                   name="alt_a"
+                                                   ng-model="old.alternativas[0].alternativa"/>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div layout="row">
+                                    <div flex="5">
+                                        <input type="checkbox" id="dpn_resposta_1">
+                                    </div>
+                                    <div flex>
+                                        <md-input-container class="md-block">
+                                            <label>Alternativa B</label>
+                                            <input type="text"
+                                                   required
+                                                   id="dpn_alternativa_1"
+                                                   name="alt_b"
+                                                   ng-model="old.alternativas[1].alternativa"/>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div layout="row">
+                                    <div flex="5">
+                                        <input type="checkbox" id="dpn_resposta_2">
+                                    </div>
+                                    <div flex>
+                                        <md-input-container class="md-block">
+                                            <label>Alternativa C</label>
+                                            <input type="text"
+                                                   id="dpn_alternativa_2"
+                                                   required
+                                                   name="alt_c"
+                                                   ng-model="old.alternativas[2].alternativa"/>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div layout="row">
+                                    <div flex="5">
+                                        <input type="checkbox" id="dpn_resposta_3">
+                                    </div>
+                                    <div flex>
+                                        <md-input-container class="md-block">
+                                            <label>Alternativa D</label>
+                                            <input type="text"
+                                                   required
+                                                   id="dpn_alternativa_3"
+                                                   name="alt_d"
+                                                   ng-model="old.alternativas[3].alternativa"/>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <md-card-actions layout="row" layout-align="end center">
+                                    <md-button
+                                            class="md-warn"
+                                            type="submit">
+                                        Excluir
+                                    </md-button>
+                                    <md-button
+                                            class="md-raised md-primary"
+                                            type="submit">
+                                        Salvar
+                                    </md-button>
+                                </md-card-actions>
+                            </div>
+                        </md-card>
+                    </div>
+                </md-content>
+            </form>
+        </md-tab>
+    </md-tabs>
+</md-content>
+<style>
+    md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
+        min-height: 90vh;
+    }
+</style>
+
+
+<!-- In production use:
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+-->
+<!-- Angular Material requires Angular.js Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+<!-- Angular Material Library -->
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
+
+<script>
+
+    var app = angular.module('myApp', ['ngMaterial', 'ngAria', 'ngAnimate']);
+        app.controller('adminCtrl', function ($scope) {
+            $scope.menu = true;
+        })
+</script>
+
+<script>
+
+    //Novo Usuario
+    function showValuesNewUser() {
+        console.log(document.getElementById("dn_nome").value);
+        console.log(document.getElementById("dn_sobrenome").value);
+        console.log(document.getElementById("dn_login").value);
+        console.log(document.getElementById("dn_email").value);
+        console.log(document.getElementById("dn_senha").value);
+        console.log(document.getElementById("dn_pontos").value);
+        console.log(document.getElementById("dn_cartas").value);
+        console.log(document.getElementById("dn_opiniao").value);
+        console.log(document.getElementById("dn_america_norte").value);
+        console.log(document.getElementById("dn_america_sul").value);
+        console.log(document.getElementById("dn_oceania").value);
+        console.log(document.getElementById("dn_africa").value);
+        console.log(document.getElementById("dn_asia").value);
+        console.log(document.getElementById("dn_europa").value);
+        console.log(document.getElementById("dn_adm").checked);
+        console.log(document.querySelector('input[name="avatar"]:checked').value);
+        console.log(document.querySelector('input[name="balao"]:checked').value);
+    }
+
+
+    //Alterar e Deletar Usuario
+    function showValuesOldUser() {
+        console.log(document.getElementById("dx_id_usuario").value);
+        console.log(document.getElementById("dx_nome").value);
+        console.log(document.getElementById("dx_sobrenome").value);
+        console.log(document.getElementById("dx_login").value);
+        console.log(document.getElementById("dx_email").value);
+        console.log(document.getElementById("dx_senha").value);
+        console.log(document.getElementById("dx_pontos").value);
+        console.log(document.getElementById("dx_cartas").value);
+        console.log(document.getElementById("dx_opiniao").value);
+        console.log(document.getElementById("dx_america_norte").value);
+        console.log(document.getElementById("dx_america_sul").value);
+        console.log(document.getElementById("dx_oceania").value);
+        console.log(document.getElementById("dx_africa").value);
+        console.log(document.getElementById("dx_asia").value);
+        console.log(document.getElementById("dx_europa").value);
+        console.log(document.getElementById("dx_adm").checked);
+        console.log(document.querySelector('input[name="dx_avatar"]:checked').value);
+        console.log(document.querySelector('input[name="dx_balao"]:checked').value);
+    }
+
+    document.getElementById("dpn_id_pergunta").value = 2;
+
+    //Nova pergunta
+    function showValuesNewQuestion() {
+        console.log(document.getElementById("dp_pergunta").value);
+        console.log(document.getElementById("dp_resposta_0").checked);
+        console.log(document.getElementById("dp_alternativa_0").value);
+        console.log(document.getElementById("dp_resposta_1").checked);
+        console.log(document.getElementById("dp_alternativa_1").value);
+        console.log(document.getElementById("dp_resposta_2").checked);
+        console.log(document.getElementById("dp_alternativa_2").value);
+        console.log(document.getElementById("dp_resposta_3").checked);
+        console.log(document.getElementById("dp_alternativa_3").value);
+    }
+
+    //Alterar pergunta
+    function showValuesOldQuestion() {
+        console.log(document.getElementById("dpn_id_pergunta").value);
+        console.log(document.getElementById("dpn_pergunta").value);
+        console.log(document.getElementById("dpn_resposta_0").checked);
+        console.log(document.getElementById("dpn_alternativa_0").value);
+        console.log(document.getElementById("dpn_resposta_1").checked);
+        console.log(document.getElementById("dpn_alternativa_1").value);
+        console.log(document.getElementById("dpn_resposta_2").checked);
+        console.log(document.getElementById("dpn_alternativa_2").value);
+        console.log(document.getElementById("dpn_resposta_3").checked);
+        console.log(document.getElementById("dpn_alternativa_3").value);
+    }
+
+    //Alterar pergunta
+    function setValuesOldQuestion() {
+        document.getElementById("dpn_id_pergunta").value = 2;
+        document.getElementById("dpn_id_pergunta").focus();
+        document.getElementById("dpn_pergunta").value = "jfdl;asdfasdf";
+        document.getElementById("dpn_resposta_0").checked = true;
+        document.getElementById("dpn_alternativa_0").value = "ewrew";
+        document.getElementById("dpn_resposta_1").checked = false;
+        document.getElementById("dpn_alternativa_1").value = 2;
+        document.getElementById("dpn_resposta_2").checked = true;
+        document.getElementById("dpn_alternativa_2").value = "jfdl;sfj;asdf sdaf ad";
+        document.getElementById("dpn_resposta_3").checked = false;
+        document.getElementById("dpn_alternativa_3").value = "3";
+    }
+
+
+</script>
+
+
+</body>
+</html>
