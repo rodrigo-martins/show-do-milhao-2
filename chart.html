@@ -42,6 +42,11 @@
             }]
         }
     });
+
+    function atualizarChart(array){
+        myChart.data.datasets[0].data = array;
+        myChart.update();
+    }
 </script>
 
 
